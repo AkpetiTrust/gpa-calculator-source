@@ -215,6 +215,14 @@ main .talk-container .talk {
   font-weight: 800;
 }
 
+.bottom .closing-comment {
+  font-weight: 800;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin: 20px 0;
+}
+
 footer {
   padding-bottom: 40px;
   padding-top: 40px;

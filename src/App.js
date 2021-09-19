@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Switch from "./components/Switch/Switch";
 import Course from "./components/Course/Course";
+import Preloader from "./components/Preloader/Preloader";
 
 function App() {
   const [theme, setTheme] = useState("light");
@@ -14,6 +15,7 @@ function App() {
     F: 0,
   });
   const [gpa, setGpa] = useState(0);
+  const [comment, setComment] = useState("");
 
   const updateGpa = (courses) => {
     let totalPointsGotten = courses
@@ -22,9 +24,16 @@ function App() {
     let totalPoints = courses
       .map((course) => course.load)
       .reduce((a, b) => a + b, 0);
+    let newGpa = totalPointsGotten / totalPoints;
     setGpa((totalPointsGotten / totalPoints).toFixed(2));
+
+    if (newGpa >= 4.5 && newGpa <= 5.0) setComment("First class oporrr! 😂🙌");
+    if (newGpa >= 3.5 && newGpa <= 4.49)
+      setComment("Second class upperrrr! Cut soap 😩");
+    if (newGpa >= 0 && newGpa <= 3.49)
+      setComment("Omo you gats fix up if you want to graduate o😂😭");
+
     localStorage.setItem("courses", JSON.stringify(courses));
-    console.log(totalPointsGotten, totalPoints);
   };
 
   useEffect(() => {
@@ -109,6 +118,7 @@ function App() {
 
   return (
     <div className={`App ${theme}`}>
+      <Preloader />
       <div className="shapes" aria-hidden>
         <div className="ball"></div>
         <div className="staircase">
@@ -219,7 +229,7 @@ function App() {
               Your G.P.A.: <span className="gpa">{gpa}</span>
             </p>
           </section>
-          <section className="closing-comment"></section>
+          <section className="closing-comment">{comment}</section>
         </section>
       </main>
       <footer>

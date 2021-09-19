@@ -192,6 +192,13 @@ main {
       font-weight: 800;
     }
   }
+  .closing-comment {
+    font-weight: 800;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    margin: 20px 0;
+  }
 }
 
 footer {
